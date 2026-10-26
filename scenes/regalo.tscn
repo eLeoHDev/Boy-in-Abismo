@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bsku17hoxtc5k"]
+
+[ext_resource type="Script" uid="uid://cbc2jo2unl1qf" path="res://scripts/regalo.gd" id="1_3qy2o"]
+[ext_resource type="Texture2D" uid="uid://vx4aojl0ja1k" path="res://assets/sprites/gift_anim.png" id="2_byvus"]
+[ext_resource type="Texture2D" uid="uid://dpfpafu6dm1wn" path="res://assets/sprites/shadow_2.png" id="2_lmqrf"]
+[ext_resource type="Texture2D" uid="uid://dfsn5ei6vstnu" path="res://assets/sprites/wrapperSpr_0.png" id="5_u8hux"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmqrf"]
+atlas = ExtResource("2_byvus")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tkdd"]
+atlas = ExtResource("2_byvus")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aa3k4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmqrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tkdd")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55xqm"]
+size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_xm55e"]
+colors = PackedColorArray(0.5512676, 0.5127292, 0.48968333, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_byvus"]
+gradient = SubResource("Gradient_xm55e")
+width = 48
+height = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.991453, 0.5)
+
+[node name="Regalo" type="Area2D" unique_id=1199993700]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_3qy2o")
+hold_duration = 0.4
+preview_fade_out_duration = 0.6
+
+[node name="Sombra" type="Sprite2D" parent="." unique_id=1694855034]
+position = Vector2(0, 8)
+texture = ExtResource("2_lmqrf")
+
+[node name="Visual" type="AnimatedSprite2D" parent="." unique_id=33451551]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_aa3k4")
+frame_progress = 0.15831964
+
+[node name="VisualAbierto" type="Sprite2D" parent="." unique_id=1219083917]
+position = Vector2(0, 4)
+texture = ExtResource("5_u8hux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=712355483]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_55xqm")
+
+[node name="Luz" type="PointLight2D" parent="." unique_id=1932647764]
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 6.0
+texture = SubResource("GradientTexture2D_byvus")

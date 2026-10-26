@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://bwh28y56l6736"]
+
+[ext_resource type="Texture2D" uid="uid://3t0dt12s883c" path="res://assets/sprites/boy_player.png" id="1_g87hm"]
+[ext_resource type="Script" uid="uid://dfea3omrebpo7" path="res://scripts/jugador.gd" id="1_lhlt4"]
+[ext_resource type="Texture2D" uid="uid://c0dap2ku3hy8p" path="res://assets/sprites/shadow_1.png" id="2_k64kw"]
+[ext_resource type="Texture2D" uid="uid://cumgtj0033fpv" path="res://assets/sprites/boy_player_front.png" id="7_xm55e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28edd"]
+atlas = ExtResource("1_g87hm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k64kw"]
+atlas = ExtResource("1_g87hm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qimn5"]
+atlas = ExtResource("1_g87hm")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gynwn"]
+atlas = ExtResource("1_g87hm")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm55e"]
+atlas = ExtResource("1_g87hm")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qimqe"]
+atlas = ExtResource("1_g87hm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aa3k4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28edd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k64kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qimn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gynwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm55e")
+}],
+"loop": 1,
+"name": &"andando",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("7_xm55e")
+}],
+"loop": 0,
+"name": &"frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qimqe")
+}],
+"loop": 0,
+"name": &"quieto",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aa3k4"]
+size = Vector2(4, 3)
+
+[sub_resource type="Gradient" id="Gradient_k64kw"]
+offsets = PackedFloat32Array(0.2107438, 1)
+colors = PackedColorArray(0.5512676, 0.5127292, 0.48968333, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aa3k4"]
+gradient = SubResource("Gradient_k64kw")
+width = 48
+height = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.991453, 0.5)
+
+[node name="Jugador" type="CharacterBody2D" unique_id=548555370 node_paths=PackedStringArray("sprite", "shadow") groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_lhlt4")
+sprite = NodePath("SpriteJugador")
+shadow = NodePath("Sombra")
+
+[node name="Sombra" type="Sprite2D" parent="." unique_id=1204154799]
+position = Vector2(0, 8)
+texture = ExtResource("2_k64kw")
+
+[node name="SpriteJugador" type="AnimatedSprite2D" parent="." unique_id=515541695]
+sprite_frames = SubResource("SpriteFrames_aa3k4")
+animation = &"frente"
+speed_scale = 2.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=956320157]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_aa3k4")
+
+[node name="Luz" type="PointLight2D" parent="." unique_id=1554358893]
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 6.0
+texture = SubResource("GradientTexture2D_aa3k4")

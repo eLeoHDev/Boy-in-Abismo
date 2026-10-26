@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bkmqkhwbi5jc"]
+
+[ext_resource type="Script" uid="uid://dwhalmyyvlycv" path="res://scripts/efecto_de_reubicado.gd" id="1_j7bu7"]
+
+[sub_resource type="Gradient" id="Gradient_gbdkc"]
+colors = PackedColorArray(0.67784333, 0.5757504, 0.9806531, 1, 0.6921774, 0.6133167, 0.9795522, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_flk8u"]
+gradient = SubResource("Gradient_gbdkc")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Curve" id="Curve_8as4w"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g42da"]
+curve = SubResource("Curve_8as4w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_85me5"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 0.19999999
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.5
+color = Color(0.75797236, 0.62013686, 0.9781819, 1)
+alpha_curve = SubResource("CurveTexture_g42da")
+
+[sub_resource type="Gradient" id="Gradient_k64kw"]
+offsets = PackedFloat32Array(0.2107438, 1)
+colors = PackedColorArray(0.5512676, 0.5127292, 0.48968333, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gbdkc"]
+gradient = SubResource("Gradient_k64kw")
+width = 48
+height = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.991453, 0.5)
+
+[node name="EfectoDeReubicado" type="Node2D" unique_id=1283836169]
+script = ExtResource("1_j7bu7")
+
+[node name="Cola" type="GPUParticles2D" parent="." unique_id=1420403183]
+amount = 64
+texture = SubResource("GradientTexture2D_flk8u")
+lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_85me5")
+
+[node name="Base" type="Sprite2D" parent="." unique_id=691605301]
+texture = SubResource("GradientTexture2D_flk8u")
+
+[node name="Luz" type="PointLight2D" parent="." unique_id=388738444]
+color = Color(0.6789437, 0.6356685, 0.999644, 1)
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 6.0
+texture = SubResource("GradientTexture2D_gbdkc")

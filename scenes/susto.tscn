@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b6tqxjr1rsxyd"]
+
+[ext_resource type="Script" uid="uid://dwm0msguhxson" path="res://scripts/susto.gd" id="1_nhow1"]
+[ext_resource type="Texture2D" uid="uid://b603arwn1riym" path="res://assets/sprites/susto2SPR.png" id="2_nhow1"]
+
+[node name="Susto" type="Control" unique_id=1477808134]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nhow1")
+screamer_texture = ExtResource("2_nhow1")
+start_scale = 0.01
+grow_duration = 0.3
+hold_duration = 1.0
+fade_duration = 1.5
+cover_margin = 0.5
+
+[node name="ImgSusto" type="TextureRect" parent="." unique_id=672777072]
+layout_mode = 0
