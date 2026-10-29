@@ -278,7 +278,7 @@ error_on_texture = ExtResource("2_rlk0l")
 challenge_saturation = 0.4
 candy_textures = Array[Texture2D]([ExtResource("3_dn431"), ExtResource("4_secod"), ExtResource("5_w6s5j"), ExtResource("6_kukc8"), ExtResource("7_w008u")])
 
-[node name="Backdrop" type="ColorRect" parent="." unique_id=671592808]
+[node name="Fondo" type="ColorRect" parent="." unique_id=671592808]
 layout_mode = 0
 offset_right = 224.0
 offset_bottom = 126.0

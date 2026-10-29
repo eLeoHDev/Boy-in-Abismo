@@ -1,7 +1,7 @@
 extends Node2D
 
 # para las partículas que viajan del regalo abierto fallido a la nueva ubicación
-signal gift_content_relocated(
+signal contenido_reubicado(
 	source: Area2D,
 	destination: Area2D
 )
@@ -32,8 +32,8 @@ func _connect_gifts(gifts: Array) -> void:
 
 
 func _connect_minigame_and_scare() -> void:
-	gift_minigame.challenge_won.connect(_on_gift_challenge_won)
-	gift_minigame.challenge_failed.connect(_on_gift_challenge_failed)
+	gift_minigame.reto_ganado.connect(_cuando_reto_ganado)
+	gift_minigame.reto_fallido.connect(_cuando_reto_fallido)
 	scare_effect.finished.connect(_on_scare_effect_finished)
 
 
@@ -51,7 +51,7 @@ func _on_gift_challenge_requested(
 	gift_minigame.call("start_challenge", gift, player)
 
 
-func _on_gift_challenge_won(
+func _cuando_reto_ganado(
 	gift: Area2D,
 	player: CharacterBody2D
 ) -> void:
@@ -66,7 +66,7 @@ func _on_gift_challenge_won(
 	player.call("finish_gift_challenge")
 
 
-func _on_gift_challenge_failed(
+func _cuando_reto_fallido(
 	gift: Area2D,
 	player: CharacterBody2D
 ) -> void:
@@ -107,7 +107,7 @@ func _on_scare_effect_finished() -> void:
 			add_child(effect)
 			effect.play(source.global_position, destination.global_position)
 
-		gift_content_relocated.emit(source, destination)
+		contenido_reubicado.emit(source, destination)
 
 	if is_instance_valid(_pending_failed_player):
 		_pending_failed_player.call("finish_gift_challenge")

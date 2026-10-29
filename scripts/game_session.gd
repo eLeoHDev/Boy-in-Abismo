@@ -1,4 +1,3 @@
-
 extends Node
 
 signal gift_count_changed(collected: int, total: int)

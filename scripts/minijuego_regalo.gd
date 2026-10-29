@@ -1,7 +1,7 @@
 extends Control
 
-signal challenge_won(gift: Area2D, player: CharacterBody2D)
-signal challenge_failed(gift: Area2D, player: CharacterBody2D)
+signal reto_ganado(gift: Area2D, player: CharacterBody2D)
+signal reto_fallido(gift: Area2D, player: CharacterBody2D)
 
 const ACTIONS: Array[StringName] = [
 	&"mov_izq", &"mov_der", &"mov_arr", &"mov_aba"
@@ -79,7 +79,7 @@ class ChallengeStep:
 
 
 @onready var arrow_prompt: HoldButton = $BotonesDeFlecha
-@onready var backdrop: ColorRect = $Backdrop
+@onready var backdrop: ColorRect = $Fondo
 @onready var gift_preview: AnimatedSprite2D = $GiftPreview
 @onready var candy_glow: TextureRect = $CandyGlow
 @onready var candy: TextureRect = $Candy
@@ -113,8 +113,8 @@ var _memory_token := 0
 
 # --- Progreso ---
 var _steps: Array[ChallengeStep] = []
-var _step_index := 0
 var _errors := 0
+var _step_index := 0
 
 # --- Temporización ---
 var _challenge_elapsed := 0.0
@@ -1000,7 +1000,7 @@ func _complete_failure() -> void:
 	_gift = null
 	_player = null
 
-	challenge_failed.emit(failed_gift, failed_player)
+	reto_fallido.emit(failed_gift, failed_player)
 
 	var gift_fade := create_tween()
 	gift_fade.tween_property(
@@ -1038,7 +1038,7 @@ func _finish_success() -> void:
 	_gift = null
 	_player = null
 
-	challenge_won.emit(finished_gift, finished_player)
+	reto_ganado.emit(finished_gift, finished_player)
 
 	_set_map_effect(1.0, 0.0, trail_fade_duration)
 

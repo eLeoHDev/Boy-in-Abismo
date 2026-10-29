@@ -1,7 +1,5 @@
-
 extends CanvasLayer
 
-@onready var gift_counter: Label = $GiftCounter
 @onready var gift_progress: TextureProgressBar = $ProgresoRegalo
 
 var _progress_tween: Tween
@@ -44,10 +42,3 @@ func _on_gift_count_changed(
 			float(collected),
 			0.45
 		).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-
-	var remaining := maxi(total - collected, 0)
-
-	gift_counter.text = (
-        "Regalos: %d / %d\nRestantes: %d"
-		% [collected, total, remaining]
-	)
